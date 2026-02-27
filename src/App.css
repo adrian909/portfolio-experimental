@@ -1,0 +1,143 @@
+/* Centered main content */
+.main-center {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 0vw;
+}
+
+.freelance-label {
+  font-weight: 600;
+  color: #000000;
+  letter-spacing: 0.3em;
+  text-align: center;
+  margin-bottom: 2vw;
+  font-size: 1vw;
+}
+
+.name-title {
+  font-weight: 900;
+  line-height: 1.1;
+  text-align: center;
+  margin: 0;
+  letter-spacing: 0.2em;
+  word-break: break-word;
+  font-size: 13vw;
+}
+
+.top-left-label {
+  position: absolute;
+  font-size: 1vw;
+  top: 10px;
+  left: 30px;
+}
+
+.location-label {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  /* În loc de width: 95vw + left: 30px, folosim box-sizing + padding */
+  box-sizing: border-box;
+  width: 100%;
+  position: absolute;
+  left: 0;
+  padding: 0 30px;
+  color: #000;
+  font-size: 1vw;
+  margin-top: 2vw;
+}
+
+/* Adaugă overflow-x: hidden pe containerul părinte (body sau wrapper) */
+body {
+  overflow-x: hidden;
+}
+
+/* ── Tablet ──────────────────────────────────── */
+@media (max-width: 900px) {
+  .main-center {
+    padding: 4vw;
+  }
+
+  .freelance-label {
+    font-size: 4vw;
+    margin-bottom: 5vw;
+  }
+
+  .name-title {
+    font-size: 14vw;
+    letter-spacing: 0.1em;
+  }
+
+  .top-left-label {
+    font-size: 2.5vw;
+    top: 8px;
+    left: 20px;
+  }
+
+  .location-label {
+    font-size: 3vw;
+    padding: 0 20px;
+  }
+}
+
+/* ── Mobile ──────────────────────────────────── */
+@media (max-width: 600px) {
+  .main-center {
+    padding: 6vw;
+  }
+
+  .freelance-label {
+    font-size: 6vw;
+    margin-bottom: 7vw;
+  }
+
+  .name-title {
+    font-size: 18vw;
+    letter-spacing: 0.05em;
+  }
+
+  .top-left-label {
+    font-size: 3.5vw;
+    top: 6px;
+    left: 14px;
+  }
+
+  .location-label {
+    font-size: 3.5vw;
+    padding: 0 14px;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 4px;
+  }
+}
+
+/* ── Animații & altele ───────────────────────── */
+.logo.react:hover {
+  filter: drop-shadow(0 0 2em #61dafbaa);
+}
+
+@keyframes logo-spin {
+  from { transform: rotate(0deg); }
+  to   { transform: rotate(360deg); }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  a:nth-of-type(2) .logo {
+    animation: logo-spin infinite 20s linear;
+  }
+}
+
+.card {
+  padding: 2em;
+}
+
+.read-the-docs {
+  color: #888;
+}
+
+.menu {
+  width: 100vw;
+  display: flex;
+  justify-content: flex-start;
+}
