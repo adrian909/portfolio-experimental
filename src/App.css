@@ -89,7 +89,7 @@ body {
 
   .freelance-label {
     font-size: 3vw;
-    margin-top: -80vw;
+    margin-top: -60vw;
   }
 
   .name-title {
@@ -110,7 +110,7 @@ body {
     align-items: flex-start;
 
     font-size: 3.5vw;
-    padding: 100px 14px;
+    padding: 90px 14px;
     gap: 4px;
     height: 100px;
   }

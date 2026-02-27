@@ -17,7 +17,7 @@ function App() {
     <>
       <div className='menu'>
         <p className='top-left-label'>
-          RO LOCAL/<b>{date.toLocaleTimeString()}</b>
+          <span style={{ color: 'gray' }}>RO LOCAL/</span><b>{date.toLocaleTimeString()}</b>
         </p>
       </div>
       <div className="main-center">
