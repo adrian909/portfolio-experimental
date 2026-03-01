@@ -4,10 +4,11 @@ import './App.css'
 function App() {
   const [loading, setLoading] = useState(true);
   const videoRef = useRef(null);
+  const isMobile = /Android|iPhone|iPad|iPod/i.test(navigator.userAgent);
 
   useEffect(() => {
     let windowReady = document.readyState === 'complete';
-    let videoReady = false;
+    let videoReady = isMobile; // skip video wait on mobile
 
     const tryFinish = () => {
       if (windowReady && videoReady) {
@@ -22,12 +23,14 @@ function App() {
       window.addEventListener('load', onWindowLoad);
     }
 
-    const vid = videoRef.current;
-    if (vid) {
-      if (vid.readyState >= 4) {
-        videoReady = true;
-      } else {
-        vid.addEventListener('canplaythrough', onVideoReady);
+    if (!isMobile) {
+      const vid = videoRef.current;
+      if (vid) {
+        if (vid.readyState >= 4) {
+          videoReady = true;
+        } else {
+          vid.addEventListener('canplaythrough', onVideoReady);
+        }
       }
     }
 
@@ -42,6 +45,7 @@ function App() {
 
     return () => {
       window.removeEventListener('load', onWindowLoad);
+      const vid = videoRef.current;
       if (vid) vid.removeEventListener('canplaythrough', onVideoReady);
       clearTimeout(fallback);
     };
@@ -137,16 +141,24 @@ function App() {
       {/* ═══ PARALLAX DIVIDER ═══ */}
       <div className="parallax-divider-wrapper" ref={wrapperRef}>
         <div className={`parallax-divider${dividerVisible ? ' visible' : ''}`}>
-          <video
-            ref={videoRef}
-            src="/divider-bg.mp4"
-            poster="/divider-poster.jpg"
-            autoPlay
-            loop
-            muted
-            playsInline
-            preload="auto"
-          />
+          {isMobile ? (
+            <img
+              src="/divider-poster.jpg"
+              alt=""
+              className="divider-img"
+            />
+          ) : (
+            <video
+              ref={videoRef}
+              src="/divider-bg.mp4"
+              poster="/divider-poster.jpg"
+              autoPlay
+              loop
+              muted
+              playsInline
+              preload="auto"
+            />
+          )}
           <div className="divider-dark-overlay"></div>
           <div className="divider-grain"></div>
         </div>
