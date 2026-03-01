@@ -24,7 +24,4 @@ dist-ssr
 *.sw?
 
 # Large media files
-public/divider-bg.mov
-public/divider-bg.mp4
-*.mov
-*.mp4
+public/divider-bg.jpg
