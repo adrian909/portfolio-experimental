@@ -69,7 +69,7 @@
    FOOTER
    ═══════════════════════════════════════════ */
 .site-footer {
-  width: 100vw;
+  width: 100%;
   background: #000;
   color: #c0fe03;
   text-align: center;
@@ -94,11 +94,20 @@ body {
   min-height: 100vh;
 }
 
+html {
+  overflow-x: hidden;
+}
+
+#root {
+  overflow-x: hidden;
+  width: 100%;
+}
+
 /* ═══════════════════════════════════════════
    PARALLAX DIVIDER
    ═══════════════════════════════════════════ */
 .parallax-divider-wrapper {
-  width: 100vw;
+  width: 100%;
   height: 100vh;
   position: relative;
 }
@@ -149,7 +158,7 @@ body {
    SECTIONS (fundal negru, text alb)
    ═══════════════════════════════════════════ */
 .section-dark {
-  width: 100vw;
+  width: 100%;
   background: #000;
   color: #fff;
   padding: 80px 40px;
@@ -160,6 +169,7 @@ body {
   align-items: stretch;
   position: relative;
   z-index: 2;
+  overflow: hidden;
 }
 
 .section-dark:first-of-type {
@@ -449,7 +459,7 @@ body {
    LAYOUT PRINCIPAL
    ═══════════════════════════════════════════ */
 .menu {
-  width: 100vw;
+  width: 100%;
   display: flex;
   justify-content: center;
   position: relative;
@@ -474,6 +484,8 @@ body {
   position: relative;
   background: #c0fe03;
   z-index: 1;
+  overflow: hidden;
+  width: 100%;
 }
 
 .location-label-wrapper {
