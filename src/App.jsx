@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef } from 'react'
+﻿import { useState, useEffect, useRef } from 'react'
 import './App.css'
 
 function App() {
@@ -190,7 +190,7 @@ function App() {
 
   return (
     <>
-      {/* ═══ LOADING SCREEN ═══ */}
+      {/* â•â•â• LOADING SCREEN â•â•â• */}
       <div className={`loader-screen${loading ? '' : ' loaded'}`}>
         <div className="loader-content">
           <span className="loader-code">SYS.INIT</span>
@@ -235,7 +235,7 @@ function App() {
         </div>
       </div>
 
-      {/* ═══ PARALLAX DIVIDER ═══ */}
+      {/* â•â•â• PARALLAX DIVIDER â•â•â• */}
       <div className="parallax-divider-wrapper" ref={wrapperRef}>
         <div className={`parallax-divider${dividerVisible ? ' visible' : ''}`}>
           {isMobile ? (
@@ -261,9 +261,9 @@ function App() {
         </div>
       </div>
 
-      {/* ═══ SECTIONS ═══ */}
+      {/* â•â•â• SECTIONS â•â•â• */}
       <section id="about" className="section-dark">
-        <span className="deco deco-rot deco-light" style={{top:'10%',right:'3%'}}>PORTFOLIO/</span>
+        <span className="deco deco-rot deco-light" style={{top:'5%',right:'3%'}}>PORTFOLIO/</span>
         <span className="deco deco-code deco-light" style={{bottom:'8%',right:'5%'}}>TAU CETI<br/>R U N R<br/>2 8 9 3</span>
         <span className="deco deco-checker deco-light" style={{top:'50%',left:'2%'}}>▚▞▚</span>
         <span className="deco deco-rot deco-light" style={{bottom:'20%',left:'1%'}}>BACKEND/</span>
@@ -271,25 +271,59 @@ function App() {
         <span className="deco deco-checker deco-light" style={{bottom:'30%',right:'8%'}}>▚▞▚▞▚</span>
         <span className="deco deco-code deco-light" style={{top:'35%',right:'1%'}}>FREQ<br/>440HZ</span>
         <h2 className="section-title reveal reveal-fade-right">ABOUT</h2>
-        <p className="section-text reveal reveal-fade-up" style={{transitionDelay:'0.15s'}}>
-          Master's graduate specialized in backend development, with solid experience in .NET technologies, API design, and database management. 
-          Skilled in building scalable and reliable server-side solutions, optimizing data flows, and integrating modern architectures. 
-          Passionate about solving complex problems, eager to learn new technologies, and motivated to contribute to collaborative, high-impact software engineering projects.
-        </p>
-        <div className="freelance-stats reveal reveal-fade-up" style={{transitionDelay:'0.3s'}}>
-          <div className="stat-item reveal reveal-fade-up" style={{transitionDelay:'0.1s'}}>
+
+        <div className="about-grid">
+          <div className="about-bio reveal reveal-fade-up" style={{transitionDelay:'0.15s'}}>
+            <span className="about-tag">[ BIO / 01 ]</span>
+            <p className="about-bio-text">
+              Master's graduate specialized in <span className="kw">backend development</span>, with solid experience in <span className="kw">.NET</span> technologies, <span className="kw">API design</span>, and <span className="kw">database management</span>.
+            </p>
+            <p className="about-bio-text">
+              Skilled in building <span className="kw">scalable</span> and reliable server-side solutions, optimizing data flows, and integrating <span className="kw">modern architectures</span>.
+            </p>
+            <p className="about-bio-text">
+              Passionate about solving complex problems, eager to learn new technologies, and motivated to contribute to collaborative, high-impact <span className="kw">software engineering</span> projects.
+            </p>
+          </div>
+
+          <div className="about-terminal reveal reveal-scale" style={{transitionDelay:'0.3s'}}>
+            <div className="terminal-header">
+              <span className="terminal-dot" style={{background:'#ff5f56'}}></span>
+              <span className="terminal-dot" style={{background:'#ffbd2e'}}></span>
+              <span className="terminal-dot" style={{background:'#27c93f'}}></span>
+              <span className="terminal-title">sys.profile</span>
+            </div>
+            <div className="terminal-body">
+              <p><span className="t-prompt">&gt;</span> <span className="t-cmd">whois</span> adrian.trif</p>
+              <br/>
+              <p><span className="t-key">NAME</span> <span className="t-val">Adrian Trif</span></p>
+              <p><span className="t-key">ROLE</span> <span className="t-val">Backend Developer</span></p>
+              <p><span className="t-key">LOCATION</span> <span className="t-val">Romania</span></p>
+              <p><span className="t-key">STACK</span> <span className="t-val">.NET / C# / SQL</span></p>
+              <p><span className="t-key">FOCUS</span> <span className="t-val">APIs &amp; Scalable Systems</span></p>
+              <p><span className="t-key">STATUS</span> <span className="t-val t-status">&#x25CF; AVAILABLE</span></p>
+              <br/>
+              <p><span className="t-prompt">&gt;</span> <span className="t-blink">_</span></p>
+            </div>
+          </div>
+        </div>
+
+        <div className="about-separator reveal reveal-fade-up" style={{transitionDelay:'0.4s'}}></div>
+
+        <div className="freelance-stats reveal reveal-fade-up" style={{transitionDelay:'0.5s'}}>
+          <div className="stat-item reveal reveal-fade-up" style={{transitionDelay:'0.2s'}}>
             <span className="stat-number">4+</span>
             <span className="stat-label">YEARS OF<br/>EXPERIENCE</span>
           </div>
-          <div className="stat-item reveal reveal-fade-up" style={{transitionDelay:'0.2s'}}>
+          <div className="stat-item reveal reveal-fade-up" style={{transitionDelay:'0.3s'}}>
             <span className="stat-number">10+</span>
             <span className="stat-label">PROJECTS<br/>COMPLETED</span>
           </div>
-          <div className="stat-item reveal reveal-fade-up" style={{transitionDelay:'0.3s'}}>
+          <div className="stat-item reveal reveal-fade-up" style={{transitionDelay:'0.4s'}}>
             <span className="stat-number">100%</span>
             <span className="stat-label">CLIENT<br/>SATISFACTION</span>
           </div>
-          <div className="stat-item reveal reveal-fade-up" style={{transitionDelay:'0.4s'}}>
+          <div className="stat-item reveal reveal-fade-up" style={{transitionDelay:'0.5s'}}>
             <span className="stat-number">24/7</span>
             <span className="stat-label">SUPPORT &<br/>AVAILABILITY</span>
           </div>
@@ -304,14 +338,14 @@ function App() {
         <span className="deco deco-rot deco-light" style={{top:'40%',left:'1%'}}>RESEARCH/</span>
         <h2 className="section-title reveal reveal-fade-right">STUDIES</h2>
         <div className="section-text reveal reveal-fade-up" style={{transitionDelay:'0.15s'}}>
-          <p><strong>Master's Degree — 2023–2025</strong></p>
-          <p>"1 Decembrie 1918" University of Alba Iulia — Advanced Programming and Databases</p>
+          <p><strong>Master's Degree â€” 2023â€“2025</strong></p>
+          <p>"1 Decembrie 1918" University of Alba Iulia â€” Advanced Programming and Databases</p>
           <br />
-          <p><strong>Bachelor's Degree — 2019–2022</strong></p>
-          <p>West University of Timisoara — Mathematics and Computer Science</p>
+          <p><strong>Bachelor's Degree â€” 2019â€“2022</strong></p>
+          <p>West University of Timisoara â€” Mathematics and Computer Science</p>
           <br />
-          <p><strong>Baccalaureate — 2015–2019</strong></p>
-          <p>"Horea, Closca si Crisan" National College, Alba Iulia — Mathematics and Computer Science</p>
+          <p><strong>Baccalaureate â€” 2015â€“2019</strong></p>
+          <p>"Horea, Closca si Crisan" National College, Alba Iulia â€” Mathematics and Computer Science</p>
         </div>
       </section>
 
@@ -324,13 +358,13 @@ function App() {
         <span className="deco deco-checker deco-light" style={{bottom:'5%',right:'12%'}}>▚▞▚</span>
         <h2 className="section-title reveal reveal-fade-right">EXPERIENCE</h2>
         <div className="section-text reveal reveal-fade-up" style={{transitionDelay:'0.15s'}}>
-          <p><strong>Programmer — TOLUNA Romania, Timisoara (2022–Present)</strong></p>
+          <p><strong>Programmer â€” TOLUNA Romania, Timisoara (2022â€“Present)</strong></p>
           <p>Developed and maintained scalable backend systems using .NET technologies. Designed and integrated RESTful APIs. Collaborated with cross-functional teams. Conducted code reviews and optimized code for performance.</p>
           <br />
-          <p><strong>Backend Developer Intern — IBM Romania, Timisoara (2021)</strong></p>
+          <p><strong>Backend Developer Intern â€” IBM Romania, Timisoara (2021)</strong></p>
           <p>Built a web application using Angular and SpringBoot. Developed robust Java-based backend services. Implemented API integrations between front-end and back-end systems.</p>
           <br />
-          <p><strong>Junior Programmer Analyst — SC IPEC SA, Alba Iulia (2020)</strong></p>
+          <p><strong>Junior Programmer Analyst â€” SC IPEC SA, Alba Iulia (2020)</strong></p>
           <p>Assisted in industrial robot programming and automation. Performed database operations for manufacturing processes. Contributed to full-stack web development tasks.</p>
         </div>
       </section>
@@ -413,7 +447,7 @@ function App() {
         <h2 className="section-title reveal reveal-fade-right">RESUME</h2>
         <div className="section-text reveal reveal-fade-up" style={{transitionDelay:'0.15s'}}>
           <p>Download my CV or view it online for complete details.</p>
-          <a href="https://trifadrian.ro/Adrian_Trif_Resume.pdf" target="_blank" rel="noreferrer" className="resume-btn">DOWNLOAD CV ↗</a>
+          <a href="https://trifadrian.ro/Adrian_Trif_Resume.pdf" target="_blank" rel="noreferrer" className="resume-btn">DOWNLOAD CV â†—</a>
         </div>
       </section>
 
@@ -437,7 +471,7 @@ function App() {
         <span className="deco deco-checker deco-light" style={{top:'15%',right:'5%'}}>▚▞▚▞</span>
         <span className="deco deco-code deco-light" style={{bottom:'10%',left:'8%'}}>EXIT<br/>CODE 0</span>
         <span className="deco deco-rot deco-light" style={{bottom:'10%',right:'3%'}}>TERMINATE/</span>
-        <p className="reveal reveal-fade-up">© {date.getFullYear()} All rights reserved — Adrian Trif</p>
+        <p className="reveal reveal-fade-up">Â© {date.getFullYear()} All rights reserved â€” Adrian Trif</p>
       </footer>
 
       {drawerOpen && (
