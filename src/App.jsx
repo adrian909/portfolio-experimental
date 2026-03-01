@@ -3,18 +3,48 @@ import './App.css'
 
 function App() {
   const [loading, setLoading] = useState(true);
+  const videoRef = useRef(null);
 
   useEffect(() => {
-    const handleLoad = () => {
-      // Small delay to ensure fonts are rendered
-      setTimeout(() => setLoading(false), 300);
+    let windowReady = document.readyState === 'complete';
+    let videoReady = false;
+
+    const tryFinish = () => {
+      if (windowReady && videoReady) {
+        setTimeout(() => setLoading(false), 300);
+      }
     };
-    if (document.readyState === 'complete') {
-      handleLoad();
-    } else {
-      window.addEventListener('load', handleLoad);
-      return () => window.removeEventListener('load', handleLoad);
+
+    const onWindowLoad = () => { windowReady = true; tryFinish(); };
+    const onVideoReady = () => { videoReady = true; tryFinish(); };
+
+    if (!windowReady) {
+      window.addEventListener('load', onWindowLoad);
     }
+
+    const vid = videoRef.current;
+    if (vid) {
+      if (vid.readyState >= 4) {
+        videoReady = true;
+      } else {
+        vid.addEventListener('canplaythrough', onVideoReady);
+      }
+    }
+
+    // Fallback: if video takes too long, show site after 6s
+    const fallback = setTimeout(() => {
+      videoReady = true;
+      windowReady = true;
+      tryFinish();
+    }, 6000);
+
+    tryFinish();
+
+    return () => {
+      window.removeEventListener('load', onWindowLoad);
+      if (vid) vid.removeEventListener('canplaythrough', onVideoReady);
+      clearTimeout(fallback);
+    };
   }, []);
 
   const [date, setDate] = useState(new Date());
@@ -108,13 +138,14 @@ function App() {
       <div className="parallax-divider-wrapper" ref={wrapperRef}>
         <div className={`parallax-divider${dividerVisible ? ' visible' : ''}`}>
           <video
-            src={dividerVisible ? "/divider-bg.mp4" : undefined}
+            ref={videoRef}
+            src="/divider-bg.mp4"
             poster="/divider-poster.jpg"
             autoPlay
             loop
             muted
             playsInline
-            preload="none"
+            preload="auto"
           />
           <div className="divider-dark-overlay"></div>
           <div className="divider-grain"></div>
