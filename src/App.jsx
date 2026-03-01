@@ -60,6 +60,9 @@ function App() {
   const [drawerOpen, setDrawerOpen] = useState(false);
   const [activeItem, setActiveItem] = useState(0);
   const [dividerVisible, setDividerVisible] = useState(false);
+  const [headerDark, setHeaderDark] = useState(false);
+  const [headerVisible, setHeaderVisible] = useState(true);
+  const lastScrollY = useRef(0);
   const wrapperRef = useRef(null);
 
   useEffect(() => {
@@ -72,6 +75,37 @@ function App() {
     observer.observe(el);
     return () => observer.disconnect();
   }, []);
+
+  // Hide header on scroll down, show on scroll up
+  useEffect(() => {
+    const onScroll = () => {
+      const currentY = window.scrollY;
+      if (currentY < 50) {
+        setHeaderVisible(true);
+      } else if (currentY > lastScrollY.current + 5) {
+        setHeaderVisible(false);
+      } else if (currentY < lastScrollY.current - 5) {
+        setHeaderVisible(true);
+      }
+      lastScrollY.current = currentY;
+    };
+    window.addEventListener('scroll', onScroll, { passive: true });
+    return () => window.removeEventListener('scroll', onScroll);
+  }, []);
+
+  // Detect if header is over dark content (not intro)
+  useEffect(() => {
+    const introEl = document.getElementById('intro');
+    if (!introEl) return;
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        setHeaderDark(!entry.isIntersecting);
+      },
+      { threshold: 0, rootMargin: '-80px 0px 0px 0px' }
+    );
+    observer.observe(introEl);
+    return () => observer.disconnect();
+  }, [loading]);
 
   const navItems = [
     { label: 'INTRO',      num: '/01', id: 'intro' },
@@ -168,13 +202,13 @@ function App() {
       </div>
 
       <div className="menu">
-        <p className="top-left-label">
+        <p className={`top-left-label${headerDark ? ' header-light' : ''}${!headerVisible ? ' header-hidden' : ''}`}>
           <span style={{ color: 'gray' }}>RO LOCAL/</span>
           <b>{date.toLocaleTimeString()}</b>
         </p>
       </div>
 
-      <button className="menu-btn" onClick={() => setDrawerOpen(!drawerOpen)}>
+      <button className={`menu-btn${headerDark ? ' header-light' : ''}${!headerVisible ? ' header-hidden' : ''}`} onClick={() => setDrawerOpen(!drawerOpen)}>
         {drawerOpen ? 'CLOSE' : 'MENU'}
       </button>
 
