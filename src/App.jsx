@@ -81,7 +81,15 @@ function App() {
       {/* ═══ PARALLAX DIVIDER ═══ */}
       <div className="parallax-divider-wrapper" ref={wrapperRef}>
         <div className={`parallax-divider${dividerVisible ? ' visible' : ''}`}>
-          <video src="/divider-bg.mov" autoPlay loop muted playsInline />
+          <video
+            src={dividerVisible ? "/divider-bg.mp4" : undefined}
+            poster="/divider-poster.jpg"
+            autoPlay
+            loop
+            muted
+            playsInline
+            preload="none"
+          />
           <div className="divider-dark-overlay"></div>
           <div className="divider-grain"></div>
         </div>
