@@ -233,6 +233,55 @@ html {
 }
 
 /* ═══════════════════════════════════════════
+   SCROLL REVEAL ANIMATIONS
+   ═══════════════════════════════════════════ */
+.reveal {
+  opacity: 0;
+  transition:
+    opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1),
+    transform 0.8s cubic-bezier(0.16, 1, 0.3, 1),
+    filter 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: opacity, transform;
+}
+
+.reveal.revealed {
+  opacity: 1;
+  transform: none;
+  filter: none;
+}
+
+/* Fade up (default) */
+.reveal-fade-up {
+  transform: translateY(60px);
+}
+
+/* Fade down */
+.reveal-fade-down {
+  transform: translateY(-40px);
+}
+
+/* Fade from left */
+.reveal-fade-left {
+  transform: translateX(-60px);
+}
+
+/* Fade from right */
+.reveal-fade-right {
+  transform: translateX(60px);
+}
+
+/* Scale in */
+.reveal-scale {
+  transform: scale(0.85);
+  filter: blur(4px);
+}
+
+/* Blur in */
+.reveal-blur {
+  filter: blur(12px);
+}
+
+/* ═══════════════════════════════════════════
    SECTIONS (fundal negru, text alb)
    ═══════════════════════════════════════════ */
 .section-dark {
@@ -545,11 +594,13 @@ html {
 }
 
 .top-left-label {
-  position: absolute;
-  font-size: clamp(12px, var(--top-label-size), 20px);
-  top: 10px;
-  left: 30px;
-  z-index: 5;
+  font-size: clamp(12px, var(--location-size), 22px);
+  margin: 0;
+  color: #000;
+  position: fixed;
+  top: 20px;
+  left: 80px;
+  z-index: 1100;
 }
 
 .main-center {
@@ -562,8 +613,9 @@ html {
   position: relative;
   background: #c0fe03;
   z-index: 1;
-  overflow: hidden;
   width: 100%;
+  box-sizing: border-box;
+  overflow-x: clip;
 }
 
 .location-label-wrapper {
@@ -597,14 +649,22 @@ html {
   justify-content: space-between;
   align-items: center;
   width: 100%;
-  bottom: 20px;
-  position: absolute;
-  left: 0;
-  padding: 0 30px;
+  max-width: 100vw;
+  padding: 0 40px 20px 40px;
   color: #000;
-  font-size: clamp(10px, var(--location-size), 16px);
-  margin-top: -2vw;
+  font-size: clamp(14px, var(--location-size), 22px);
+  margin-top: auto;
   gap: 10px;
+}
+
+.location-label p {
+  margin: 0;
+  flex-shrink: 1;
+  min-width: 0;
+}
+
+.location-label p:last-child {
+  text-align: right;
 }
 
 /* ═══════════════════════════════════════════
@@ -613,7 +673,7 @@ html {
 .menu-btn {
   position: fixed;
   top: 24px;
-  right: 24px;
+  right: 80px;
   z-index: 1100;
   background: #222;
   color: #fff;
@@ -622,6 +682,9 @@ html {
   font-size: 1rem;
   border-radius: 4px;
   cursor: pointer;
+  font-family: inherit;
+  letter-spacing: 0.15em;
+  font-weight: 700;
 }
 
 /* ═══════════════════════════════════════════
@@ -833,7 +896,7 @@ html {
     padding: 5rem 1.2rem 60px 1.2rem;
   }
 
-  .top-left-label { left: 20px; }
+  .top-left-label { font-size: clamp(14px, 2.5vw, 20px); }
   .location-label { padding: 0 20px; }
   .main-center { padding: 4vw; }
   .name-title { letter-spacing: 0.1em; }
@@ -850,7 +913,7 @@ html {
     --social-padding: 20px;
     --top-label-size: 1vw;
     --freelance-size: 1vw;
-    --location-size: 1vw;
+    --location-size: 1.2vw;
   }
 
   .drawer {
@@ -918,21 +981,50 @@ html {
   }
 
   .top-left-label {
-    font-size: 16px;
-    left: 15px;
+    font-size: 18px;
+    left: 25px;
+    top: 16px;
+  }
+
+  .main-center {
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 60px 15px 0 15px;
+    overflow: visible;
   }
 
   .location-label {
+    position: static;
     flex-direction: row;
     text-align: center;
-    padding: 0 15px;
-    gap: 0;
-    font-size: 14px;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 15px 20px 15px;
+    gap: 10px;
+    font-size: 16px;
+    margin-top: auto;
+    width: 100%;
+    box-sizing: border-box;
+    overflow: visible;
+  }
+
+  .location-label p {
+    margin: 0;
+    line-height: 1.4;
+    white-space: normal;
+    word-break: break-word;
+  }
+
+  .freelance-label,
+  .name-title {
+    text-align: center;
   }
 
   .freelance-label {
     font-size: 12px;
     letter-spacing: 0.15em;
+    margin-top: auto;
   }
 
   .name-title {
@@ -942,7 +1034,7 @@ html {
 
   .menu-btn {
     top: 16px;
-    right: 16px;
+    right: 20px;
     font-size: 0.85rem;
     padding: 0.4rem 1rem;
   }
