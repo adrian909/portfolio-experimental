@@ -21,6 +21,83 @@
 }
 
 /* ═══════════════════════════════════════════
+   LOADING SCREEN
+   ═══════════════════════════════════════════ */
+.loader-screen {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  background: #c0fe03;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: opacity 0.6s ease, visibility 0.6s ease;
+}
+
+.loader-screen.loaded {
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+}
+
+.loader-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+}
+
+.loader-code {
+  font-family: 'Maratype', monospace;
+  font-size: clamp(32px, 8vw, 80px);
+  font-weight: 900;
+  letter-spacing: 0.15em;
+  color: #000;
+}
+
+.loader-bar-track {
+  width: clamp(200px, 40vw, 400px);
+  height: 3px;
+  background: rgba(0, 0, 0, 0.2);
+  position: relative;
+  overflow: hidden;
+}
+
+.loader-bar-fill {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 40%;
+  background: #000;
+  animation: loaderSlide 1s ease-in-out infinite;
+}
+
+.loader-status {
+  font-family: 'Maratype', monospace;
+  font-size: 12px;
+  letter-spacing: 0.4em;
+  color: #000;
+  text-transform: uppercase;
+}
+
+.loader-dots {
+  animation: loaderBlink 1s steps(3) infinite;
+}
+
+@keyframes loaderSlide {
+  0%   { left: -40%; }
+  100% { left: 100%; }
+}
+
+@keyframes loaderBlink {
+  0%   { opacity: 0; }
+  33%  { opacity: 1; }
+  66%  { opacity: 0; }
+  100% { opacity: 1; }
+}
+
+/* ═══════════════════════════════════════════
    DECORATIVE BRUTALIST ELEMENTS
    ═══════════════════════════════════════════ */
 .deco {

@@ -2,6 +2,21 @@ import { useState, useEffect, useRef } from 'react'
 import './App.css'
 
 function App() {
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const handleLoad = () => {
+      // Small delay to ensure fonts are rendered
+      setTimeout(() => setLoading(false), 300);
+    };
+    if (document.readyState === 'complete') {
+      handleLoad();
+    } else {
+      window.addEventListener('load', handleLoad);
+      return () => window.removeEventListener('load', handleLoad);
+    }
+  }, []);
+
   const [date, setDate] = useState(new Date());
   useEffect(() => {
     const timer = setInterval(() => setDate(new Date()), 1000);
@@ -48,6 +63,17 @@ function App() {
 
   return (
     <>
+      {/* ═══ LOADING SCREEN ═══ */}
+      <div className={`loader-screen${loading ? '' : ' loaded'}`}>
+        <div className="loader-content">
+          <span className="loader-code">SYS.INIT</span>
+          <div className="loader-bar-track">
+            <div className="loader-bar-fill"></div>
+          </div>
+          <span className="loader-status">LOADING ASSETS<span className="loader-dots">...</span></span>
+        </div>
+      </div>
+
       <div className="menu">
         <p className="top-left-label">
           <span style={{ color: 'gray' }}>RO LOCAL/</span>
