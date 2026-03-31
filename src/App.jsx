@@ -1,5 +1,18 @@
-﻿import { useState, useEffect, useRef } from 'react'
+﻿import { useState, useEffect, useRef, lazy, Suspense } from 'react'
 import './App.css'
+import './cinematic.css'
+
+// Lazy-load the heavy cinematic sections so Three.js only ships when needed
+const ExperienceSection = lazy(() => import('./sections/ExperienceSection'));
+const StudiesSection    = lazy(() => import('./sections/StudiesSection'));
+const ProjectsSection   = lazy(() => import('./sections/ProjectsSection'));
+const TechnologySection = lazy(() => import('./sections/TechnologySection'));
+const VisionSection     = lazy(() => import('./sections/VisionSection'));
+const ResumeSection     = lazy(() => import('./sections/ResumeSection'));
+const ContactSection    = lazy(() => import('./sections/ContactSection'));
+
+import CustomCursor   from './components/CustomCursor';
+import ScrollProgress from './components/ScrollProgress';
 
 function App() {
   const [loading, setLoading] = useState(true);
@@ -110,12 +123,13 @@ function App() {
   const navItems = [
     { label: 'INTRO',      num: '/01', id: 'intro' },
     { label: 'ABOUT',      num: '/02', id: 'about' },
-    { label: 'STUDIES',    num: '/03', id: 'studies' },
-    { label: 'EXPERIENCE', num: '/04', id: 'experience' },
-    { label: 'SKILLS',     num: '/05', id: 'skills' },
-    { label: 'PROJECTS',   num: '/06', id: 'projects' },
-    { label: 'RESUME',     num: '/07', id: 'resume' },
-    { label: 'CONTACT',    num: '/08', id: 'contact' },
+    { label: 'EXPERIENCE', num: '/03', id: 'experience' },
+    { label: 'STUDIES',    num: '/04', id: 'studies' },
+    { label: 'PROJECTS',   num: '/05', id: 'projects' },
+    { label: 'TECHNOLOGY', num: '/06', id: 'technology' },
+    { label: 'VISION',     num: '/07', id: 'vision' },
+    { label: 'RESUME',     num: '/08', id: 'resume' },
+    { label: 'CONTACT',    num: '/09', id: 'contact' },
   ];
 
   // Auto-detect active section on scroll
@@ -190,6 +204,10 @@ function App() {
 
   return (
     <>
+      {/* GLOBAL UI OVERLAYS */}
+      <CustomCursor />
+      <ScrollProgress />
+
       {/* â•â•â• LOADING SCREEN â•â•â• */}
       <div className={`loader-screen${loading ? '' : ' loaded'}`}>
         <div className="loader-content">
@@ -338,140 +356,57 @@ function App() {
         <span className="deco deco-rot deco-light" style={{top:'40%',left:'1%'}}>RESEARCH/</span>
         <h2 className="section-title reveal reveal-fade-right">STUDIES</h2>
         <div className="section-text reveal reveal-fade-up" style={{transitionDelay:'0.15s'}}>
-          <p><strong>Master's Degree â€” 2023â€“2025</strong></p>
-          <p>"1 Decembrie 1918" University of Alba Iulia â€” Advanced Programming and Databases</p>
+          <p><strong>Master's Degree â€" 2023â€"2025</strong></p>
+          <p>"1 Decembrie 1918" University of Alba Iulia â€" Advanced Programming and Databases</p>
           <br />
-          <p><strong>Bachelor's Degree â€” 2019â€“2022</strong></p>
-          <p>West University of Timisoara â€” Mathematics and Computer Science</p>
+          <p><strong>Bachelor's Degree â€" 2019â€"2022</strong></p>
+          <p>West University of Timisoara â€" Mathematics and Computer Science</p>
           <br />
-          <p><strong>Baccalaureate â€” 2015â€“2019</strong></p>
-          <p>"Horea, Closca si Crisan" National College, Alba Iulia â€” Mathematics and Computer Science</p>
+          <p><strong>Baccalaureate â€" 2015â€"2019</strong></p>
+          <p>"Horea, Closca si Crisan" National College, Alba Iulia â€" Mathematics and Computer Science</p>
         </div>
       </section>
 
-      <section id="experience" className="section-dark">
-        <span className="deco deco-checker deco-light" style={{top:'8%',right:'6%'}}>▚▞▚▞▚▞</span>
-        <span className="deco deco-code deco-light" style={{bottom:'10%',left:'3%'}}>SYS.LOG<br/>ID#77</span>
-        <span className="deco deco-rot deco-light" style={{top:'45%',right:'2%'}}>CAREER/</span>
-        <span className="deco deco-code deco-light" style={{top:'5%',left:'6%'}}>STACK<br/>OVERFLOW<br/>++</span>
-        <span className="deco deco-rot deco-light" style={{bottom:'30%',left:'1%'}}>RUNTIME/</span>
-        <span className="deco deco-checker deco-light" style={{bottom:'5%',right:'12%'}}>▚▞▚</span>
-        <h2 className="section-title reveal reveal-fade-right">EXPERIENCE</h2>
-        <div className="section-text reveal reveal-fade-up" style={{transitionDelay:'0.15s'}}>
-          <p><strong>Programmer â€” TOLUNA Romania, Timisoara (2022â€“Present)</strong></p>
-          <p>Developed and maintained scalable backend systems using .NET technologies. Designed and integrated RESTful APIs. Collaborated with cross-functional teams. Conducted code reviews and optimized code for performance.</p>
-          <br />
-          <p><strong>Backend Developer Intern â€” IBM Romania, Timisoara (2021)</strong></p>
-          <p>Built a web application using Angular and SpringBoot. Developed robust Java-based backend services. Implemented API integrations between front-end and back-end systems.</p>
-          <br />
-          <p><strong>Junior Programmer Analyst â€” SC IPEC SA, Alba Iulia (2020)</strong></p>
-          <p>Assisted in industrial robot programming and automation. Performed database operations for manufacturing processes. Contributed to full-stack web development tasks.</p>
-        </div>
-      </section>
+      {/* ─── CINEMATIC SECTIONS (GSAP + Three.js + Framer Motion) ─── */}
+      <Suspense fallback={null}>
+        <ExperienceSection />
+      </Suspense>
 
-      <section id="skills" className="section-dark">
-        <span className="deco deco-rot deco-light" style={{top:'15%',left:'2%'}}>TECHNICAL/</span>
-        <span className="deco deco-code deco-light" style={{bottom:'12%',right:'4%'}}>SUPER<br/>BOLD<br/>10/26</span>
-        <span className="deco deco-checker deco-light" style={{bottom:'40%',left:'4%'}}>▚▞</span>
-        <span className="deco deco-code deco-light" style={{top:'8%',right:'8%'}}>DEPLOY<br/>STATUS<br/>OK</span>
-        <span className="deco deco-rot deco-light" style={{bottom:'10%',left:'1%'}}>COMPILE/</span>
-        <span className="deco deco-checker deco-light" style={{top:'30%',right:'2%'}}>▚▞▚▞</span>
-        <h2 className="section-title reveal reveal-fade-right">SKILLS</h2>
-        <div className="section-skills reveal reveal-fade-up" style={{transitionDelay:'0.15s'}}>
-          <span className="skill-tag">.NET</span>
-          <span className="skill-tag">C#</span>
-          <span className="skill-tag">Java</span>
-          <span className="skill-tag">SpringBoot</span>
-          <span className="skill-tag">SQL</span>
-          <span className="skill-tag">AWS</span>
-          <span className="skill-tag">Docker</span>
-          <span className="skill-tag">Terraform</span>
-          <span className="skill-tag">Azure</span>
-          <span className="skill-tag">Git</span>
-          <span className="skill-tag">MySQL</span>
-          <span className="skill-tag">Firebase</span>
-          <span className="skill-tag">Shopify</span>
-          <span className="skill-tag">Flutter</span>
-          <span className="skill-tag">Dart</span>
-          <span className="skill-tag">Android Studio</span>
-        </div>
-      </section>
+      <Suspense fallback={null}>
+        <StudiesSection />
+      </Suspense>
 
-      <section id="projects" className="section-dark">
-        <span className="deco deco-rot deco-light" style={{top:'5%',right:'3%'}}>SHOWCASE/</span>
-        <span className="deco deco-code deco-light" style={{bottom:'5%',left:'2%'}}>GRID<br/>MODE<br/>4X1</span>
-        <span className="deco deco-checker deco-light" style={{top:'3%',left:'5%'}}>▚▞▚▞▚</span>
-        <span className="deco deco-rot deco-light" style={{bottom:'20%',right:'1%'}}>RENDER/</span>
-        <span className="deco deco-code deco-light" style={{top:'50%',left:'1%'}}>PIXEL<br/>RATIO<br/>2X</span>
-        <h2 className="section-title reveal reveal-fade-right">PROJECTS</h2>
-        <div className="projects-grid reveal reveal-fade-up" style={{transitionDelay:'0.15s'}}>
-          <a href="https://hausmarylu.at/" target="_blank" rel="noreferrer" className="project-card">
-            <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=800&q=80" alt="Haus MaryLu" />
-            <div className="project-grain"></div>
-            <div className="project-info">
-              <h3>HAUS MARYLU</h3>
-              <p>///GUESTHOUSE</p>
-            </div>
-          </a>
-          <a href="https://ctrlplusart.com/" target="_blank" rel="noreferrer" className="project-card">
-            <img src="https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?w=800&q=80" alt="CTRL+ART" />
-            <div className="project-grain"></div>
-            <div className="project-info">
-              <h3>CTRL+ART</h3>
-              <p>///E-COMMERCE</p>
-            </div>
-          </a>
-          <a href="https://ophelisse.com/" target="_blank" rel="noreferrer" className="project-card">
-            <img src="https://images.unsplash.com/photo-1556228578-0d85b1a4d571?w=800&q=80" alt="Ophelisse" />
-            <div className="project-grain"></div>
-            <div className="project-info">
-              <h3>OPHELISSE</h3>
-              <p>///SKINCARE</p>
-            </div>
-          </a>
-          <a href="https://florinasart.com/" target="_blank" rel="noreferrer" className="project-card">
-            <img src="https://images.unsplash.com/photo-1579783902614-a3fb3927b6a5?w=800&q=80" alt="Florinas Art" />
-            <div className="project-grain"></div>
-            <div className="project-info">
-              <h3>FLORINAS ART</h3>
-              <p>///PAINTINGS</p>
-            </div>
-          </a>
-        </div>
-      </section>
+      <Suspense fallback={null}>
+        <ProjectsSection />
+      </Suspense>
 
-      <section id="resume" className="section-dark">
-        <span className="deco deco-rot deco-light" style={{top:'10%',right:'3%'}}>DOWNLOAD/</span>
-        <span className="deco deco-code deco-light" style={{bottom:'10%',left:'4%'}}>FILE<br/>PDF<br/>2.4MB</span>
-        <span className="deco deco-checker deco-light" style={{top:'15%',left:'2%'}}>▚▞▚</span>
-        <h2 className="section-title reveal reveal-fade-right">RESUME</h2>
-        <div className="section-text reveal reveal-fade-up" style={{transitionDelay:'0.15s'}}>
-          <p>Download my CV or view it online for complete details.</p>
-          <a href="https://trifadrian.ro/Adrian_Trif_Resume.pdf" target="_blank" rel="noreferrer" className="resume-btn">DOWNLOAD CV â†—</a>
-        </div>
-      </section>
+      <Suspense fallback={null}>
+        <TechnologySection />
+      </Suspense>
 
-      <section id="contact" className="section-dark">
-        <span className="deco deco-rot deco-light" style={{top:'10%',left:'3%'}}>CONNECT/</span>
-        <span className="deco deco-checker deco-light" style={{bottom:'15%',right:'5%'}}>▚▞▚▞</span>
-        <span className="deco deco-code deco-light" style={{top:'20%',right:'8%'}}>INBOX<br/>MSG#01</span>
-        <span className="deco deco-rot deco-light" style={{bottom:'10%',right:'2%'}}>SIGNAL/</span>
-        <span className="deco deco-code deco-light" style={{bottom:'5%',left:'8%'}}>PING<br/>REPLY<br/>200</span>
-        <span className="deco deco-checker deco-light" style={{top:'40%',left:'1%'}}>▚▞▚</span>
-        <h2 className="section-title reveal reveal-fade-right">CONTACT</h2>
-        <div className="section-text reveal reveal-fade-up" style={{transitionDelay:'0.15s'}}>
-          <p>Email: <a href="mailto:adiitrif14@gmail.com" className="section-link">adiitrif14@gmail.com</a></p>
-          <p>Phone: <a href="tel:+40732166568" className="section-link">+40 732 166 568</a></p>
-          <p>Location: Alba Iulia, Romania</p>
-        </div>
-      </section>
+      <Suspense fallback={null}>
+        <VisionSection />
+      </Suspense>
 
-      <footer className="site-footer">
-        <span className="deco deco-rot deco-light" style={{top:'10%',left:'3%'}}>END/</span>
-        <span className="deco deco-checker deco-light" style={{top:'15%',right:'5%'}}>▚▞▚▞</span>
-        <span className="deco deco-code deco-light" style={{bottom:'10%',left:'8%'}}>EXIT<br/>CODE 0</span>
-        <span className="deco deco-rot deco-light" style={{bottom:'10%',right:'3%'}}>TERMINATE/</span>
-        <p className="reveal reveal-fade-up">Â© {date.getFullYear()} All rights reserved â€” Adrian Trif</p>
+
+      <Suspense fallback={null}>
+        <ResumeSection />
+      </Suspense>
+
+      <Suspense fallback={null}>
+        <ContactSection />
+      </Suspense>
+
+      <footer className="cin-footer">
+        <span className="deco deco-rot   deco-light" style={{top:'15%',left:'3%'}}>END/</span>
+        <span className="deco deco-checker deco-light" style={{top:'20%',right:'5%'}}>▚▞▚▞</span>
+        <span className="deco deco-code  deco-light" style={{bottom:'15%',left:'8%'}}>EXIT<br/>CODE 0</span>
+        <span className="deco deco-rot   deco-light" style={{bottom:'15%',right:'3%'}}>TERMINATE/</span>
+        <div className="cin-footer-inner">
+          <span className="cin-footer-copy">© {date.getFullYear()} — ADRIAN TRIF</span>
+          <span className="cin-footer-loc">ALBA IULIA, ROMANIA</span>
+          <span className="cin-footer-stack">BUILT WITH REACT + GSAP + THREE.JS</span>
+        </div>
       </footer>
 
       {drawerOpen && (
