@@ -2,8 +2,9 @@ import { useEffect, useRef, useState } from 'react';
 import { motion, useMotionValue, useSpring, useTransform } from 'framer-motion';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import { ScrollToPlugin } from 'gsap/ScrollToPlugin';
 
-gsap.registerPlugin(ScrollTrigger);
+gsap.registerPlugin(ScrollTrigger, ScrollToPlugin);
 
 // ─── Real projects from trifadrian.ro ─────────────────────────────────────────
 const PROJECTS = [
@@ -13,9 +14,9 @@ const PROJECTS = [
     type: 'GUESTHOUSE WEBSITE',
     category: '///HOSPITALITY',
     url: 'https://hausmarylu.at/',
-    img: 'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=1800&q=80',
+    img: '/Untitled.png',
     tech: ['HTML', 'CSS', 'JavaScript'],
-    year: '2024',
+    year: '2025',
     desc: 'Modern responsive website built with a strong focus on brand identity and visual storytelling. Delivers a seamless digital experience for guests discovering the guesthouse.',
     accent: '#c0fe03',
   },
@@ -25,11 +26,11 @@ const PROJECTS = [
     type: 'E-COMMERCE — MOUSEPADS',
     category: '///CREATIVE COMMERCE',
     url: 'https://ctrlplusart.com/',
-    img: 'https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?w=1800&q=80',
+    img: '/Untitled1.png',
     tech: ['Shopify', 'Shopify Apps', 'Liquid'],
-    year: '2024',
+    year: '2025',
     desc: 'Designed and launched an online shop specialising in creative, high-quality mousepads. End-to-end e-commerce architecture including product management, app integrations, and brand cohesion.',
-    accent: '#a78bfa',
+    accent: '#c0fe03',
   },
   {
     num: '03',
@@ -37,11 +38,11 @@ const PROJECTS = [
     type: 'SKINCARE BRAND',
     category: '///BEAUTY & WELLNESS',
     url: 'https://ophelisse.com/',
-    img: 'https://images.unsplash.com/photo-1556228578-0d85b1a4d571?w=1800&q=80',
+    img: '/Untitled2.png',
     tech: ['Shopify', 'Shopify Apps', 'Liquid'],
-    year: '2023',
+    year: '2025',
     desc: 'Luxury skincare e-commerce with hands-on experience in e-commerce operations, visual merchandising, and conversion optimisation for the beauty industry.',
-    accent: '#f9a8d4',
+    accent: '#c0fe03',
   },
   {
     num: '04',
@@ -49,11 +50,59 @@ const PROJECTS = [
     type: 'FINE ART GALLERY',
     category: '///FINE ART',
     url: 'https://florinasart.com/',
-    img: 'https://images.unsplash.com/photo-1579783902614-a3fb3927b6a5?w=1800&q=80',
+    img: '/florinasart.png',
     tech: ['Shopify', 'Shopify Apps', 'Liquid'],
-    year: '2023',
+    year: '2026',
     desc: 'Fine art paintings marketplace handling product listings, curated collections, and visual merchandising. Where authentic human creativity meets digital commerce.',
-    accent: '#fb923c',
+    accent: '#c0fe03',
+  },
+  {
+    num: '05',
+    name: 'SOLARECO SOLIDAR',
+    type: 'ENERGY',
+    category: '///ENERGY',
+    url: 'https://solarecosolidar.ro/',
+    img: '/Untitled3.png',
+    tech: ['ReactJs', 'CSS ', 'Vite '],
+    year: '2026',
+    desc: 'Responsive web presence for a solar energy cooperative, built with React and Vite. Clean, fast, and informative — communicating renewable energy services to local communities across Romania.',
+    accent: '#c0fe03',
+  },
+  {
+    num: '06',
+    name: 'FORJA COMUNITATII',
+    type: 'METAL FORGE',
+    category: '///METAL FORGE',
+    url: 'https://forjacomunitatii.ro/',
+    img: '/Untitled4.png',
+    tech: ['ReactJs', 'CSS ', 'Vite '],
+    year: '2026',
+    desc: 'Modern website for a community metal forge, showcasing craftsmanship, services, and custom metalwork. Built with React and Vite with a focus on industrial character and strong visual identity.',
+    accent: '#c0fe03',
+  },
+  {
+    num: '07',
+    name: 'PEISART DESIGN',
+    type: 'LANDSCAPE',
+    category: '///LANDSCAPE',
+    url: 'https://peisartdesign.ro/',
+    img: '/Untitled5.png',
+    tech: ['ReactJs', 'CSS ', 'Vite '],
+    year: '2026',
+    desc: 'Portfolio and services website for a landscape design studio. Visually led presentation of garden projects, plant selections, and outdoor space transformations — built with React and Vite.',
+    accent: '#c0fe03',
+  },
+  {
+    num: '08',
+    name: 'STRALUCIM IMPREUNA',
+    type: 'CLEANING',
+    category: '///CLEANING',
+    url: 'https://stralucimimpreuna.ro/',
+    img: '/Untitled6.png',
+    tech: ['ReactJs', 'CSS ', 'Vite '],
+    year: '2026',
+    desc: 'Professional website for a cleaning services company, built with React and Vite. Clear service presentation, contact flow, and brand-consistent design to convert local customers.',
+    accent: '#c0fe03',
   },
 ];
 
@@ -114,8 +163,8 @@ function ProjectCard({ project, index }) {
         style={{ x: txtX }}
       >
         <div className="proj-meta-row">
-          <span className="proj-meta-num"  style={{ color: project.accent }}>{project.num}</span>
-          <span className="proj-meta-cat">{project.category}</span>
+          <span className="proj-meta-num"  style={{ color: '#c0fe03' }}>{project.num}</span>
+          <span className="proj-meta-cat" style={{ color: '#c0fe03' }}>{project.category}</span>
           <span className="proj-meta-yr">{project.year}</span>
         </div>
 
@@ -141,8 +190,8 @@ function ProjectCard({ project, index }) {
           target="_blank"
           rel="noreferrer"
           className="proj-cta"
-          style={{ borderColor: project.accent, color: project.accent }}
-          whileHover={{ backgroundColor: project.accent, color: '#000', paddingLeft: '2rem' }}
+          style={{ borderColor: '#c0fe03', color: '#c0fe03' }}
+          whileHover={{ backgroundColor: '#c0fe03', color: '#000', paddingLeft: '2rem' }}
           transition={{ duration: 0.22, ease: 'easeInOut' }}
         >
           VIEW PROJECT ↗
@@ -157,8 +206,12 @@ export default function ProjectsSection() {
   const sectionRef = useRef(null);
   const trackRef   = useRef(null);
   const [active, setActive] = useState(0);
+  const [skipVisible, setSkipVisible] = useState(false);
+  const isMobile = window.matchMedia('(max-width: 768px)').matches ||
+    /Android|iPhone|iPad|iPod/i.test(navigator.userAgent);
 
   useEffect(() => {
+    if (isMobile) return;
     const ctx = gsap.context(() => {
 
       // ── Core horizontal scroll ────────────────────────────────────────────
@@ -169,13 +222,14 @@ export default function ProjectsSection() {
         scrollTrigger: {
           trigger: sectionRef.current,
           start: 'top top',
-          end: () => `+=${trackRef.current.scrollWidth - window.innerWidth}`,
+          end: () => `+=${trackRef.current.scrollWidth - window.innerWidth + window.innerWidth * 0.25}`,
           pin: true,
-          scrub: 1.4,
+          scrub: 1,
           anticipatePin: 1,
           invalidateOnRefresh: true,
           onUpdate: (self) => {
-            setActive(Math.round(self.progress * (PROJECTS.length - 1)));
+            const clamped = Math.min(self.progress, 1);
+            setActive(Math.round(clamped * (PROJECTS.length - 1)));
           },
         },
       });
@@ -208,8 +262,8 @@ export default function ProjectsSection() {
             scrollTrigger: {
               containerAnimation: hTween,
               trigger: el.closest('.proj-card'),
-              start: 'left 75%',
-              end:   'left 18%',
+              start: 'left 80%',
+              end:   'left 35%',
               scrub: 0.7,
             },
           }
@@ -227,11 +281,22 @@ export default function ProjectsSection() {
               containerAnimation: hTween,
               trigger: el.closest('.proj-card'),
               start: 'left 85%',
-              end:   'left 5%',
+              end:   'left 20%',
               scrub: 1.2,
             },
           }
         );
+      });
+
+      // ── Skip button: show while pinned, hide otherwise ───────────────────
+      ScrollTrigger.create({
+        trigger: sectionRef.current,
+        start: 'top top',
+        end: () => `+=${trackRef.current.scrollWidth - window.innerWidth + window.innerWidth * 0.25}`,
+        onEnter:     () => setSkipVisible(true),
+        onLeave:     () => setSkipVisible(false),
+        onEnterBack: () => setSkipVisible(true),
+        onLeaveBack: () => setSkipVisible(false),
       });
 
       // ── "Shudder" entrance — a brief micro-shake as section pins ──────────
@@ -255,6 +320,17 @@ export default function ProjectsSection() {
   }, []);
 
   return (
+    <>
+    {/* Skip button — outside section so position:fixed works correctly */}
+    <button
+      className={`proj-skip${skipVisible ? ' proj-skip--visible' : ''}`}
+      onClick={() => {
+        gsap.to(window, { duration: 4, scrollTo: '#technology', ease: 'power2.inOut' });
+      }}
+    >
+      SKIP ↓
+    </button>
+
     <section id="projects" ref={sectionRef} className="cinematic-section proj-section">
 
       {/* Ambient decoratives */}
@@ -299,5 +375,6 @@ export default function ProjectsSection() {
       </div>
 
     </section>
+    </>
   );
 }

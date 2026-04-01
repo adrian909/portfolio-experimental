@@ -9,27 +9,39 @@ gsap.registerPlugin(ScrollTrigger);
 const DEGREES = [
   {
     num:        '01',
-    period:     '2020 — 2022',
-    degree:     'MASTER OF SCIENCE',
-    field:      'ADVANCED PROGRAMMING & DATABASES',
-    university: 'POLYTECHNIC UNIVERSITY OF TIMISOARA',
-    location:   'Timisoara, Romania',
+    period:     '2023 — 2025',
+    degree:     'MASTER\'S DEGREE',
+    field:      'ADVANCED PROGRAMMING AND DATABASES',
+    university: '“1 Decembrie 1918” University of Alba Iulia',
+    location:   'Alba Iulia, Alba, Romania',
     summary:    'Graduate studies in distributed systems, advanced database architecture, and scalable software engineering.',
     desc:       'Deepened expertise in database optimization, advanced programming paradigms, and enterprise software design patterns. Research-oriented curriculum with a strong emphasis on practical application in real-world backend systems.',
     tags:       ['Distributed Systems', 'Advanced SQL', 'Software Architecture', 'Research', 'C#', 'Java'],
-    year:       '2022',
+    year:       '2025',
   },
   {
     num:        '02',
-    period:     '2016 — 2020',
-    degree:     'BACHELOR OF SCIENCE',
-    field:      'COMPUTER SCIENCE',
-    university: '1 DECEMBRIE 1918 UNIVERSITY',
-    location:   'Alba Iulia, Romania',
+    period:     '2019 — 2022',
+    degree:     'BACHELOR\’S DEGREE',
+    field:      'Mathematics and Computer Science - Computer Science',
+    university: 'West University of Timisoara',
+    location:   'Timisoara, Timis, Romania',
     summary:    'Foundational education in computer science, algorithms, and full-stack software development.',
     desc:       'Built comprehensive skills across programming fundamentals, data structures, database systems, and web development. Graduated with a strong applied focus, working on real projects throughout the program.',
     tags:       ['Algorithms', 'Data Structures', 'OOP', 'Databases', 'Web Dev', 'Networks'],
-    year:       '2020',
+    year:       '2022',
+  },
+  {
+    num:        '03',
+    period:     '2015 — 2019',
+    degree:     'BACCALAUREATE',
+    field:      'Mathematics and Computer Science, intensive Computer Science',
+    university: '”Horea, Cloșca și Crișan” National College',
+    location:   'Alba Iulia, Alba, Romania',
+    summary:    'High school specialization in mathematics and computer science, laying the technical foundation for a career in software engineering.',
+    desc:       'Studied core programming concepts, mathematical logic, and algorithmic thinking. First hands-on exposure to C++, problem solving, and competitive programming. Graduated with distinction in the computer science profile.',
+    tags:       ['C++', 'Algorithms', 'Mathematics', 'Logic', 'Problem Solving'],
+    year:       '2019',
   },
 ];
 
@@ -171,7 +183,7 @@ export default function StudiesSection() {
       {/* ── Section heading ─────────────────────────────────────────────── */}
       <div className="studies-head">
         <div className="studies-head-meta">
-          <span className="cin-label">[ 04 / 09 ] — EDUCATION</span>
+          <span className="cin-label">[ 04 / 08 ] — EDUCATION</span>
           <p className="cin-sub">ACADEMIC BACKGROUND & DEGREES</p>
         </div>
         <h2 className="studies-title-display" aria-label="STUDIES">

@@ -14,30 +14,44 @@ const JOBS = [
     company: 'TOLUNA ROMANIA',
     location: 'Timisoara, Romania',
     summary: 'Enterprise-scale backend engineering at a global survey intelligence company.',
-    desc: 'Engineered and maintained scalable backend systems using .NET. Designed RESTful APIs serving millions of survey responses per month across global markets. Conducted code reviews, drove performance optimization cycles, and collaborated across international cross-functional engineering teams.',
-    stack: ['.NET', 'C#', 'SQL', 'AWS', 'Docker', 'Terraform', 'Agile'],
+    desc: [
+      'Developed and maintained scalable backend systems using .NET technologies.',
+      'Designed and integrated RESTful APIs to enhance application functionality.',
+      'Collaborated with cross-functional teams to implement effective database management solutions.',
+      'Conducted code reviews and implemented best practices to ensure code quality.',
+      'Optimized existing code for performance improvements and bug fixes.',
+    ],
+    stack: ['.NET', 'C#', 'AWS', 'Terraform'],
     year: '2022',
   },
   {
     num: '02',
-    period: '2021',
+    period: '2021 — 2021',
     role: 'BACKEND DEVELOPER INTERN',
     company: 'IBM ROMANIA',
     location: 'Timisoara, Romania',
     summary: 'Enterprise-grade engineering at one of the world\'s largest technology companies.',
-    desc: 'Built web applications using Angular and SpringBoot. Developed robust Java-based backend services and implemented seamless API integrations between front-end and back-end systems across distributed enterprise architecture.',
-    stack: ['Java', 'SpringBoot', 'Angular', 'REST APIs', 'JavaScript', 'Git'],
+    desc: [
+      'Built a web application using Angular and SpringBoot, enhancing user experience and interface design.',
+      'Developed robust Java-based backend services, ensuring optimal performance and scalability.',
+      'Implemented API integrations to streamline communication between front-end and back-end systems.',
+    ],
+    stack: ['Angular', 'SpringBoot', 'Java', 'JavaScript'],
     year: '2021',
   },
   {
     num: '03',
-    period: '2020',
+    period: '2020 — 2020',
     role: 'JUNIOR PROGRAMMER ANALYST',
     company: 'SC IPEC SA',
     location: 'Alba Iulia, Romania',
     summary: 'Industrial automation and full-stack development in manufacturing.',
-    desc: 'Assisted in industrial robot programming and factory automation. Performed database operations for manufacturing pipelines. Contributed full-stack development tasks across internal tools and workflow management systems.',
-    stack: ['MySQL', 'HTML', 'CSS', 'JavaScript', 'Industrial Automation'],
+    desc: [
+      'Assisted in industrial robot programming and automation.',
+      'Performed database operations for manufacturing processes.',
+      'Contributed to full-stack web development tasks.',
+    ],
+    stack: ['MySQL', 'HTML', 'CSS', 'JavaScript'],
     year: '2020',
   },
 ];
@@ -266,7 +280,11 @@ export default function ExperienceSection() {
                 <p className="exp-summary">{job.summary}</p>
 
                 {/* Full description */}
-                <p className="exp-desc">{job.desc}</p>
+                <ul className="exp-desc">
+                  {job.desc.map((point, k) => (
+                    <li key={k}>{point}</li>
+                  ))}
+                </ul>
 
                 {/* Tech stack — Framer Motion hover on each tag */}
                 <div className="exp-stack">

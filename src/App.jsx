@@ -3,11 +3,11 @@ import './App.css'
 import './cinematic.css'
 
 // Lazy-load the heavy cinematic sections so Three.js only ships when needed
+const AboutSection      = lazy(() => import('./sections/AboutSection'));
 const ExperienceSection = lazy(() => import('./sections/ExperienceSection'));
 const StudiesSection    = lazy(() => import('./sections/StudiesSection'));
 const ProjectsSection   = lazy(() => import('./sections/ProjectsSection'));
 const TechnologySection = lazy(() => import('./sections/TechnologySection'));
-const VisionSection     = lazy(() => import('./sections/VisionSection'));
 const ResumeSection     = lazy(() => import('./sections/ResumeSection'));
 const ContactSection    = lazy(() => import('./sections/ContactSection'));
 
@@ -127,9 +127,8 @@ function App() {
     { label: 'STUDIES',    num: '/04', id: 'studies' },
     { label: 'PROJECTS',   num: '/05', id: 'projects' },
     { label: 'TECHNOLOGY', num: '/06', id: 'technology' },
-    { label: 'VISION',     num: '/07', id: 'vision' },
-    { label: 'RESUME',     num: '/08', id: 'resume' },
-    { label: 'CONTACT',    num: '/09', id: 'contact' },
+    { label: 'RESUME',     num: '/07', id: 'resume' },
+    { label: 'CONTACT',    num: '/08', id: 'contact' },
   ];
 
   // Auto-detect active section on scroll
@@ -280,94 +279,11 @@ function App() {
       </div>
 
       {/* â•â•â• SECTIONS â•â•â• */}
-      <section id="about" className="section-dark">
-        <span className="deco deco-rot deco-light" style={{top:'5%',right:'3%'}}>PORTFOLIO/</span>
-        <span className="deco deco-code deco-light" style={{bottom:'8%',right:'5%'}}>TAU CETI<br/>R U N R<br/>2 8 9 3</span>
-        <span className="deco deco-checker deco-light" style={{top:'50%',left:'2%'}}>▚▞▚</span>
-        <span className="deco deco-rot deco-light" style={{bottom:'20%',left:'1%'}}>BACKEND/</span>
-        <span className="deco deco-code deco-light" style={{top:'5%',left:'8%'}}>VER 2.0<br/>BUILD OK</span>
-        <span className="deco deco-checker deco-light" style={{bottom:'30%',right:'8%'}}>▚▞▚▞▚</span>
-        <span className="deco deco-code deco-light" style={{top:'35%',right:'1%'}}>FREQ<br/>440HZ</span>
-        <h2 className="section-title reveal reveal-fade-right">ABOUT</h2>
-
-        <div className="about-grid">
-          <div className="about-bio reveal reveal-fade-up" style={{transitionDelay:'0.15s'}}>
-            <span className="about-tag">[ BIO / 01 ]</span>
-            <p className="about-bio-text">
-              Master's graduate specialized in <span className="kw">backend development</span>, with solid experience in <span className="kw">.NET</span> technologies, <span className="kw">API design</span>, and <span className="kw">database management</span>.
-            </p>
-            <p className="about-bio-text">
-              Skilled in building <span className="kw">scalable</span> and reliable server-side solutions, optimizing data flows, and integrating <span className="kw">modern architectures</span>.
-            </p>
-            <p className="about-bio-text">
-              Passionate about solving complex problems, eager to learn new technologies, and motivated to contribute to collaborative, high-impact <span className="kw">software engineering</span> projects.
-            </p>
-          </div>
-
-          <div className="about-terminal reveal reveal-scale" style={{transitionDelay:'0.3s'}}>
-            <div className="terminal-header">
-              <span className="terminal-dot" style={{background:'#ff5f56'}}></span>
-              <span className="terminal-dot" style={{background:'#ffbd2e'}}></span>
-              <span className="terminal-dot" style={{background:'#27c93f'}}></span>
-              <span className="terminal-title">sys.profile</span>
-            </div>
-            <div className="terminal-body">
-              <p><span className="t-prompt">&gt;</span> <span className="t-cmd">whois</span> adrian.trif</p>
-              <br/>
-              <p><span className="t-key">NAME</span> <span className="t-val">Adrian Trif</span></p>
-              <p><span className="t-key">ROLE</span> <span className="t-val">Backend Developer</span></p>
-              <p><span className="t-key">LOCATION</span> <span className="t-val">Romania</span></p>
-              <p><span className="t-key">STACK</span> <span className="t-val">.NET / C# / SQL</span></p>
-              <p><span className="t-key">FOCUS</span> <span className="t-val">APIs &amp; Scalable Systems</span></p>
-              <p><span className="t-key">STATUS</span> <span className="t-val t-status">&#x25CF; AVAILABLE</span></p>
-              <br/>
-              <p><span className="t-prompt">&gt;</span> <span className="t-blink">_</span></p>
-            </div>
-          </div>
-        </div>
-
-        <div className="about-separator reveal reveal-fade-up" style={{transitionDelay:'0.4s'}}></div>
-
-        <div className="freelance-stats reveal reveal-fade-up" style={{transitionDelay:'0.5s'}}>
-          <div className="stat-item reveal reveal-fade-up" style={{transitionDelay:'0.2s'}}>
-            <span className="stat-number">4+</span>
-            <span className="stat-label">YEARS OF<br/>EXPERIENCE</span>
-          </div>
-          <div className="stat-item reveal reveal-fade-up" style={{transitionDelay:'0.3s'}}>
-            <span className="stat-number">10+</span>
-            <span className="stat-label">PROJECTS<br/>COMPLETED</span>
-          </div>
-          <div className="stat-item reveal reveal-fade-up" style={{transitionDelay:'0.4s'}}>
-            <span className="stat-number">100%</span>
-            <span className="stat-label">CLIENT<br/>SATISFACTION</span>
-          </div>
-          <div className="stat-item reveal reveal-fade-up" style={{transitionDelay:'0.5s'}}>
-            <span className="stat-number">24/7</span>
-            <span className="stat-label">SUPPORT &<br/>AVAILABILITY</span>
-          </div>
-        </div>
-      </section>
-
-      <section id="studies" className="section-dark">
-        <span className="deco deco-code deco-light" style={{top:'12%',left:'3%'}}>TRESPASS<br/>TRIAL<br/>NR/<br/>00002025</span>
-        <span className="deco deco-rot deco-light" style={{bottom:'15%',right:'4%'}}>ACADEMIC/</span>
-        <span className="deco deco-checker deco-light" style={{top:'8%',right:'10%'}}>▚▞▚▞</span>
-        <span className="deco deco-code deco-light" style={{bottom:'5%',left:'8%'}}>GRAD<br/>SUMMA</span>
-        <span className="deco deco-rot deco-light" style={{top:'40%',left:'1%'}}>RESEARCH/</span>
-        <h2 className="section-title reveal reveal-fade-right">STUDIES</h2>
-        <div className="section-text reveal reveal-fade-up" style={{transitionDelay:'0.15s'}}>
-          <p><strong>Master's Degree â€" 2023â€"2025</strong></p>
-          <p>"1 Decembrie 1918" University of Alba Iulia â€" Advanced Programming and Databases</p>
-          <br />
-          <p><strong>Bachelor's Degree â€" 2019â€"2022</strong></p>
-          <p>West University of Timisoara â€" Mathematics and Computer Science</p>
-          <br />
-          <p><strong>Baccalaureate â€" 2015â€"2019</strong></p>
-          <p>"Horea, Closca si Crisan" National College, Alba Iulia â€" Mathematics and Computer Science</p>
-        </div>
-      </section>
-
       {/* ─── CINEMATIC SECTIONS (GSAP + Three.js + Framer Motion) ─── */}
+      <Suspense fallback={null}>
+        <AboutSection />
+      </Suspense>
+
       <Suspense fallback={null}>
         <ExperienceSection />
       </Suspense>
@@ -383,11 +299,6 @@ function App() {
       <Suspense fallback={null}>
         <TechnologySection />
       </Suspense>
-
-      <Suspense fallback={null}>
-        <VisionSection />
-      </Suspense>
-
 
       <Suspense fallback={null}>
         <ResumeSection />
