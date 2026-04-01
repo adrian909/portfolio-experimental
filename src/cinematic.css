@@ -4,6 +4,9 @@
    Visual language: brutalist dark, neon lime (#c0fe03), depth
    ============================================================ */
 
+/* ── Box model reset ── */
+*, *::before, *::after { box-sizing: border-box; }
+
 /* ── Root tokens (extend existing App.css vars) ─────────────── */
 :root {
   --cin-bg:       #090909;
@@ -1112,7 +1115,7 @@ body:has(.cursor-dot) * { cursor: none; }
   margin: 0 0 1.1rem;
   display: flex;
   flex-direction: column;
-  align-items: center;
+  align-items: flex-start;
   gap: 0;
 }
 
@@ -1285,6 +1288,9 @@ body:has(.cursor-dot) * { cursor: none; }
 
 @media (max-width: 768px) {
 
+  /* ── Hide decorative elements — too cluttered on mobile ── */
+  .deco { display: none !important; }
+
   /* ── Experience ── */
   .exp-title-display { font-size: clamp(2.4rem,10vw,3.5rem); }
   .exp-timeline { padding-left: 20px; }
@@ -1379,24 +1385,93 @@ body:has(.cursor-dot) * { cursor: none; }
   .vision-cta-row { flex-direction: column; align-items: center; }
   .vision-stats { gap: 1.2rem; }
 
-  /* ── Contact — stack columns vertically on mobile ── */
-  .contact-body { grid-template-columns: 1fr; gap: 3rem; }
+  /* ── Contact — non-layout tweaks only (layout overrides are at bottom of file) ── */
+  .contact-section { padding: 4rem 1.5rem 3rem; }
+  .contact-tagline { font-size: 0.7rem; letter-spacing: 0.14em; white-space: normal; }
+  .contact-item-value { font-size: 0.9rem; word-break: break-all; }
   .contact-info-col, .contact-form-col,
   .contact-title-word, .contact-tagline { opacity: 1 !important; transform: none !important; }
-  .cf-submit { width: 100%; }
+  .cf-input { font-size: 16px; }
+  .cf-submit { padding: 14px; font-size: 0.75rem; }
 
-  /* ── Resume — ensure visible ── */
+  /* ── Resume — non-layout tweaks only (layout overrides are at bottom of file) ── */
+  .vision-headline { align-items: flex-start; }
+  .vision-line-inner { font-size: clamp(2rem, 9vw, 3.2rem); }
+  .vision-stats { gap: 1.2rem; flex-wrap: wrap; justify-content: flex-start; }
+  .vision-stat { min-width: 80px; }
+  .vision-rule { margin: 0 0 2rem; }
+  .vision-bar-t, .vision-bar-b { transform: scaleY(0) !important; }
   .resume-title-l, .resume-title-r,
-  .resume-rule, .resume-stats-row,
-  .resume-body, .resume-cta-row { opacity: 1 !important; transform: none !important; }
+  .resume-rule, .resume-body,
+  .resume-stat { opacity: 1 !important; transform: none !important; }
 
 }
 
 @media (max-width: 480px) {
-  .exp-section { padding: 3rem 1.2rem 3rem; }
-  .proj-content { left: 1.2rem; bottom: 2rem; }
-  .vision-content { padding: 2rem 1.2rem; }
-  .vision-stat-num { font-size: clamp(1.4rem,6vw,2rem); }
+
+  /* ── Shared section padding ── */
+  .cinematic-section {
+    padding-left: 1.2rem !important;
+    padding-right: 1.2rem !important;
+  }
+
+  /* ── About ── */
+  .about-section { padding: 3.5rem 1.2rem 3rem; }
+  .about-title-display { font-size: clamp(2.8rem, 12vw, 4rem); }
+  .about-terminal { font-size: 0.72rem; }
+  .about-terminal-body { padding: 1rem 1rem; }
+  .about-bio-col { gap: 1.6rem; }
+
+  /* ── Experience ── */
+  .exp-section { padding: 3.5rem 1.2rem 3rem; }
+  .exp-title-display { font-size: clamp(2.2rem, 10vw, 3rem); }
+  .exp-desc { font-size: 0.88rem; }
+  .exp-summary { font-size: 0.88rem; }
+
+  /* ── Studies ── */
+  .studies-section { padding: 3.5rem 1.2rem 3rem; }
+  .studies-title-display { font-size: clamp(2.2rem, 10vw, 3rem); }
+  .studies-desc { font-size: 0.88rem; }
+  .studies-summary { font-size: 0.88rem; }
+
+  /* ── Projects ── */
+  .proj-content { left: 1rem; right: 1rem; bottom: 1.5rem; }
+  .proj-name { font-size: clamp(1.4rem, 7vw, 1.8rem); }
+  .proj-desc { font-size: 0.82rem; }
+
+  /* ── Technology ── */
+  .tech-section { padding: 2.5rem 1.2rem 2rem; }
+  .tech-title-display { font-size: clamp(2.2rem, 10vw, 3rem); }
+  .tech-row { gap: 0.6rem; }
+  .tech-row-label { display: none; }
+  .tech-marquee-item { font-size: clamp(1rem, 5vw, 1.4rem); padding: 0 0.8rem; }
+
+  /* ── Vision/Resume ── */
+  .resume-title-block { padding: 2rem 1.2rem 0; }
+  .resume-section > .vision-content { padding: 1rem 1.2rem 0; }
+  .vision-line-inner { font-size: clamp(1.8rem, 8vw, 2.6rem); }
+  .vision-stat-num { font-size: clamp(1.4rem, 6vw, 2rem); }
+  .vision-stats { gap: 0.8rem; }
+  .vision-statement { font-size: 0.88rem; }
+  .resume-inner { grid-column: unset; grid-row: unset; padding: 1rem 1.2rem 2rem; }
+  .resume-title { font-size: clamp(2.4rem, 10vw, 3rem); }
+  .resume-body { font-size: 0.88rem; }
+  .resume-ctas { flex-direction: column; gap: 0.7rem; }
+  .resume-dl-btn, .resume-contact-btn {
+    text-align: center; width: 100%; box-sizing: border-box; padding: 14px;
+  }
+
+  /* ── Contact ── */
+  .contact-section { padding: 3rem 1.2rem 3rem; }
+  .contact-title-word { font-size: clamp(1.8rem, 9vw, 2.6rem); }
+  .contact-tagline { font-size: 0.65rem; white-space: normal; }
+  .contact-body { gap: 2rem; }
+  .contact-grid { grid-template-columns: 1fr; gap: 1rem; }
+  .contact-item-value { font-size: 0.85rem; word-break: break-all; }
+  .contact-social { flex: 1 1 100%; }
+  .cf-input { font-size: 16px; }
+  .cf-submit { width: 100%; padding: 14px; font-size: 0.72rem; }
+
 }
 
 
@@ -1406,14 +1481,34 @@ body:has(.cursor-dot) * { cursor: none; }
 
 .resume-section {
   min-height: 100vh;
-  display: flex;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
   align-items: center;
+  column-gap: clamp(2rem, 5vw, 6rem);
+}
+
+/* Desktop grid placement — overlays/decos are position:absolute so don't affect grid */
+.resume-title-block {
+  grid-column: 2;
+  grid-row: 1;
+  padding: clamp(5rem,10vh,10rem) clamp(1.5rem,6vw,7rem) 0;
+  position: relative;
+  z-index: 6;
+}
+
+.resume-section > .vision-content {
+  grid-column: 1;
+  grid-row: 1 / 3;
+  padding: clamp(5rem,10vh,10rem) 0 clamp(5rem,10vh,10rem) clamp(1.5rem,6vw,7rem);
+  text-align: left;
+  max-width: 560px;
 }
 
 .resume-inner {
-  padding: clamp(5rem,10vh,10rem) clamp(1.5rem,6vw,7rem);
-  max-width: 900px;
-  width: 100%;
+  grid-column: 2;
+  grid-row: 2;
+  padding: 0 clamp(1.5rem,6vw,7rem) clamp(5rem,10vh,10rem);
+  min-width: 0;
 }
 
 /* Split title identical treatment to Experience */
@@ -1790,14 +1885,33 @@ body:has(.cursor-dot) * { cursor: none; }
    ══════════════════════════════════════════════════════════════ */
 
 @media (max-width: 768px) {
+  /* ── Technology ── */
+  .tech-section { min-height: auto; padding: 3rem 1.5rem 2.5rem; }
+
+  /* ── Resume — single column (must come AFTER base grid styles in cascade) ── */
+  .resume-section {
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: stretch !important;
+    min-height: auto !important;
+  }
+  .resume-title-block { grid-column: unset; grid-row: unset; padding: 2.5rem 1.5rem 0; }
+  .resume-section > .vision-content { grid-column: unset; grid-row: unset; padding: 1.2rem 1.5rem 0; max-width: 100%; }
+  .resume-inner { grid-column: unset; grid-row: unset; padding: 1.2rem 1.5rem 2.5rem; }
   .resume-title { font-size: clamp(2.5rem,10vw,3.5rem); }
   .resume-stats { gap: 1.2rem; }
+  .resume-ctas { flex-direction: column; gap: 0.8rem; }
+  .resume-dl-btn, .resume-contact-btn { display: block; text-align: center; width: 100%; }
 
+  /* ── Contact — single column (must come AFTER base grid styles in cascade) ── */
+  .contact-body { grid-template-columns: 1fr !important; gap: 2.5rem; }
   .contact-title-word { font-size: clamp(2rem,9vw,3rem); }
   .contact-grid { grid-template-columns: 1fr; gap: 1.5rem; }
   .contact-cta-wrap { text-align: center; }
-  .contact-socials { gap: 0.6rem; }
-  .contact-social { min-width: 120px; }
+  .contact-socials { gap: 0.6rem; flex-wrap: wrap; }
+  .contact-social { flex: 1 1 calc(50% - 0.3rem); min-width: 0; }
+  .cf-submit { display: block; width: 100%; align-self: stretch; }
+  .contact-form-col { min-width: 0; overflow: hidden; }
 
   .cin-footer-inner { flex-direction: column; align-items: flex-start; gap: 0.4rem; }
 }

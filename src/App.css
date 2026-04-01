@@ -838,7 +838,7 @@ html {
   color: #000;
   position: fixed;
   top: 20px;
-  left: 80px;
+  left: clamp(16px, 5vw, 80px);
   z-index: 1100;
   transition: color 0.3s ease, transform 0.4s ease, opacity 0.4s ease;
 }
@@ -923,7 +923,7 @@ html {
 .menu-btn {
   position: fixed;
   top: 24px;
-  right: 80px;
+  right: clamp(16px, 5vw, 80px);
   z-index: 1100;
   background: #222;
   color: #fff;
@@ -1345,7 +1345,7 @@ html {
   }
 
   .deco {
-    font-size: 7px;
+    display: none;
   }
 
   .deco-rot {

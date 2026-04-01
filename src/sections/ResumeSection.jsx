@@ -5,40 +5,6 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
 gsap.registerPlugin(ScrollTrigger);
 
-// ─── Animated counter ────────────────────────────────────────────────────────
-function Counter({ end, suffix = '', label }) {
-  const numRef = useRef(null);
-
-  useEffect(() => {
-    const el = numRef.current;
-    if (!el) return;
-    const st = ScrollTrigger.create({
-      trigger: el,
-      start: 'top 82%',
-      once: true,
-      onEnter: () => {
-        const obj = { val: 0 };
-        gsap.to(obj, {
-          val: end,
-          duration: 2.2,
-          ease: 'power2.out',
-          onUpdate: () => {
-            el.textContent = Math.round(obj.val) + suffix;
-          },
-        });
-      },
-    });
-    return () => st.kill();
-  }, [end, suffix]);
-
-  return (
-    <div className="vision-stat">
-      <span ref={numRef} className="vision-stat-num">0{suffix}</span>
-      <span className="vision-stat-label">{label}</span>
-    </div>
-  );
-}
-
 // ─── Staggered word reveal ────────────────────────────────────────────────────
 function WordReveal({ lines, className = '', baseDelay = 0 }) {
   return (
@@ -156,14 +122,14 @@ export default function ResumeSection() {
         { x: '-6vw', opacity: 0 },
         {
           x: 0, opacity: 1, duration: 1.0, ease: 'expo.out',
-          scrollTrigger: { trigger: '.resume-inner', start: 'top 80%', toggleActions: 'play none none none' },
+          scrollTrigger: { trigger: '.resume-title-block', start: 'top 80%', toggleActions: 'play none none none' },
         }
       );
       gsap.fromTo('.resume-title-r',
         { x: '6vw', opacity: 0 },
         {
           x: 0, opacity: 1, duration: 1.0, ease: 'expo.out',
-          scrollTrigger: { trigger: '.resume-inner', start: 'top 80%', toggleActions: 'play none none none' },
+          scrollTrigger: { trigger: '.resume-title-block', start: 'top 80%', toggleActions: 'play none none none' },
         }
       );
 
@@ -172,7 +138,7 @@ export default function ResumeSection() {
         { scaleX: 0, transformOrigin: 'left center' },
         {
           scaleX: 1, duration: 1.1, ease: 'power4.inOut',
-          scrollTrigger: { trigger: '.resume-inner', start: 'top 75%', toggleActions: 'play none none none' },
+          scrollTrigger: { trigger: '.resume-title-block', start: 'top 75%', toggleActions: 'play none none none' },
         }
       );
 
@@ -242,8 +208,8 @@ export default function ResumeSection() {
       <span className="deco deco-rot     deco-light" style={{ bottom: '25%', right: '2%' }}>EXPORT/</span>
       <span className="deco deco-code    deco-light" style={{ top: '35%',   right: '1%' }}>CERT<br />VALID</span>
 
-      {/* ── Vision content ──────────────────────────────────────────────────── */}
-      <div className="vision-content">
+      {/* ── 1. RESUME title block (first in DOM = first on mobile) ─────────── */}
+      <div className="resume-title-block">
 
         <motion.span
           className="cin-label vision-label"
@@ -254,6 +220,17 @@ export default function ResumeSection() {
         >
           [ 07 / 08 ] — RESUME
         </motion.span>
+
+        <h2 className="resume-title" aria-label="RESUME">
+          <span className="resume-title-l">RE</span><span className="resume-title-r">SUME</span>
+        </h2>
+
+        <div className="resume-rule" />
+
+      </div>
+
+      {/* ── 2. Vision headline + statement ──────────────────────────────────── */}
+      <div className="vision-content">
 
         <WordReveal
           lines={['I BUILD THE', 'INVISIBLE', 'INFRASTRUCTURE']}
@@ -286,14 +263,8 @@ export default function ResumeSection() {
 
       </div>
 
-      {/* ── Resume download block ────────────────────────────────────────────── */}
+      {/* ── 3. Stats / body / CTAs ──────────────────────────────────────────── */}
       <div className="resume-inner">
-
-        <h2 className="resume-title" aria-label="RESUME">
-          <span className="resume-title-l">RE</span><span className="resume-title-r">SUME</span>
-        </h2>
-
-        <div className="resume-rule" />
 
         <div className="resume-stats">
           {[
