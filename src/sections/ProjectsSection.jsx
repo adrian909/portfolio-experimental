@@ -211,8 +211,9 @@ export default function ProjectsSection() {
     /Android|iPhone|iPad|iPod/i.test(navigator.userAgent);
 
   useEffect(() => {
-    if (isMobile) return;
     const ctx = gsap.context(() => {
+
+      if (isMobile) return;
 
       // ── Core horizontal scroll ────────────────────────────────────────────
       // GSAP translates the track by (total width - viewport) as you scroll down.

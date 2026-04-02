@@ -46,25 +46,40 @@ export default function ResumeSection() {
     /Android|iPhone|iPad|iPod/i.test(navigator.userAgent);
 
   useEffect(() => {
-    if (isMobile) return;
     const ctx = gsap.context(() => {
 
-      // ── Vision: Letterbox bars slide away ─────────────────────────────────
-      gsap.set('.vision-bar-t', { transformOrigin: 'top center' });
-      gsap.set('.vision-bar-b', { transformOrigin: 'bottom center' });
-      gsap.fromTo(['.vision-bar-t', '.vision-bar-b'],
-        { scaleY: 1 },
-        {
-          scaleY: 0,
-          ease: 'power2.inOut',
-          scrollTrigger: {
-            trigger: sectionRef.current,
-            start: 'top 88%',
-            end:   'top 30%',
-            scrub: 1.1,
-          },
-        }
-      );
+      if (!isMobile) {
+        // ── Vision: Letterbox bars slide away ───────────────────────────────
+        gsap.set('.vision-bar-t', { transformOrigin: 'top center' });
+        gsap.set('.vision-bar-b', { transformOrigin: 'bottom center' });
+        gsap.fromTo(['.vision-bar-t', '.vision-bar-b'],
+          { scaleY: 1 },
+          {
+            scaleY: 0,
+            ease: 'power2.inOut',
+            scrollTrigger: {
+              trigger: sectionRef.current,
+              start: 'top 88%',
+              end:   'top 30%',
+              scrub: 1.1,
+            },
+          }
+        );
+
+        // ── Vision: Floating particles drift upward ──────────────────────────
+        document.querySelectorAll('.vision-particle').forEach((p) => {
+          gsap.to(p, {
+            y:       -(55 + Math.random() * 90),
+            x:       (Math.random() - 0.5) * 45,
+            opacity: 0,
+            duration: 3.5 + Math.random() * 4.5,
+            delay:    Math.random() * 6,
+            ease:     'none',
+            repeat:   -1,
+            repeatDelay: Math.random() * 3,
+          });
+        });
+      }
 
       // ── Vision: Camera-flash entrance ─────────────────────────────────────
       ScrollTrigger.create({
@@ -86,20 +101,6 @@ export default function ResumeSection() {
         ease: 'sine.inOut',
         yoyo: true,
         repeat: -1,
-      });
-
-      // ── Vision: Floating particles drift upward ────────────────────────────
-      document.querySelectorAll('.vision-particle').forEach((p) => {
-        gsap.to(p, {
-          y:       -(55 + Math.random() * 90),
-          x:       (Math.random() - 0.5) * 45,
-          opacity: 0,
-          duration: 3.5 + Math.random() * 4.5,
-          delay:    Math.random() * 6,
-          ease:     'none',
-          repeat:   -1,
-          repeatDelay: Math.random() * 3,
-        });
       });
 
       // ── Vision: Divider line grows ─────────────────────────────────────────

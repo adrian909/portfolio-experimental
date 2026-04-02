@@ -62,7 +62,6 @@ export default function ExperienceSection() {
     /Android|iPhone|iPad|iPod/i.test(navigator.userAgent);
 
   useEffect(() => {
-    if (isMobile) return;
     const ctx = gsap.context(() => {
 
       // ── Section title — letters split into two halves that "close" together ──
@@ -91,19 +90,21 @@ export default function ExperienceSection() {
         }
       );
 
-      // ── Vertical timeline bar — scrub grows as you scroll through section ──
-      gsap.fromTo('.exp-vbar',
-        { scaleY: 0, transformOrigin: 'top center' },
-        {
-          scaleY: 1, ease: 'none',
-          scrollTrigger: {
-            trigger: '.exp-timeline',
-            start: 'top 65%',
-            end: 'bottom 55%',
-            scrub: 1,
-          },
-        }
-      );
+      // ── Vertical timeline bar — scrub grows as you scroll (desktop only) ──
+      if (!isMobile) {
+        gsap.fromTo('.exp-vbar',
+          { scaleY: 0, transformOrigin: 'top center' },
+          {
+            scaleY: 1, ease: 'none',
+            scrollTrigger: {
+              trigger: '.exp-timeline',
+              start: 'top 65%',
+              end: 'bottom 55%',
+              scrub: 1,
+            },
+          }
+        );
+      }
 
       // Each entry dot fades in as bar passes it
       document.querySelectorAll('.exp-entry-dot').forEach((dot) => {

@@ -45,11 +45,7 @@ const ROWS = [
 
 export default function TechnologySection() {
   const sectionRef = useRef(null);
-  const isMobile = window.matchMedia('(max-width: 768px)').matches ||
-    /Android|iPhone|iPad|iPod/i.test(navigator.userAgent);
-
   useEffect(() => {
-    if (isMobile) return;
     const ctx = gsap.context(() => {
 
       // Title split slides in

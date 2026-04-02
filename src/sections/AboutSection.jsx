@@ -1,5 +1,4 @@
 import { useEffect, useRef } from 'react';
-import { motion } from 'framer-motion';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
@@ -41,11 +40,7 @@ const BIO = [
 
 export default function AboutSection() {
   const sectionRef = useRef(null);
-  const isMobile = window.matchMedia('(max-width: 768px)').matches ||
-    /Android|iPhone|iPad|iPod/i.test(navigator.userAgent);
-
   useEffect(() => {
-    if (isMobile) return;
     const ctx = gsap.context(() => {
 
       // Title split

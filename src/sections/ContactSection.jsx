@@ -13,9 +13,6 @@ const SOCIALS = [
 
 export default function ContactSection() {
   const sectionRef = useRef(null);
-  const isMobile = window.matchMedia('(max-width: 768px)').matches ||
-    /Android|iPhone|iPad|iPod/i.test(navigator.userAgent);
-
   const [form, setForm]       = useState({ name: '', email: '', message: '' });
   const [sent, setSent]       = useState(false);
   const [focused, setFocused] = useState('');
@@ -34,7 +31,6 @@ export default function ContactSection() {
   };
 
   useEffect(() => {
-    if (isMobile) return;
     const ctx = gsap.context(() => {
 
       gsap.fromTo('.contact-title-word',

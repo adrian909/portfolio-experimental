@@ -21,38 +21,44 @@ function App() {
 
   useEffect(() => {
     let windowReady = document.readyState === 'complete';
-    let videoReady = isMobile; // skip video wait on mobile
+    let videoReady  = isMobile; // skip video wait on mobile
+    let sectionsReady = false;
 
     const tryFinish = () => {
-      if (windowReady && videoReady) {
+      if (windowReady && videoReady && sectionsReady) {
         setTimeout(() => setLoading(false), 300);
       }
     };
 
     const onWindowLoad = () => { windowReady = true; tryFinish(); };
-    const onVideoReady = () => { videoReady = true; tryFinish(); };
+    const onVideoReady = () => { videoReady  = true; tryFinish(); };
 
-    if (!windowReady) {
-      window.addEventListener('load', onWindowLoad);
-    }
+    if (!windowReady) window.addEventListener('load', onWindowLoad);
 
     if (!isMobile) {
       const vid = videoRef.current;
       if (vid) {
-        if (vid.readyState >= 4) {
-          videoReady = true;
-        } else {
-          vid.addEventListener('canplaythrough', onVideoReady);
-        }
+        if (vid.readyState >= 4) { videoReady = true; }
+        else { vid.addEventListener('canplaythrough', onVideoReady); }
       }
     }
 
-    // Fallback: if video takes too long, show site after 6s
+    // Eagerly preload all lazy section bundles — loading screen stays until all JS is ready
+    Promise.all([
+      import('./sections/AboutSection'),
+      import('./sections/ExperienceSection'),
+      import('./sections/StudiesSection'),
+      import('./sections/ProjectsSection'),
+      import('./sections/TechnologySection'),
+      import('./sections/ResumeSection'),
+      import('./sections/ContactSection'),
+    ]).then(() => { sectionsReady = true; tryFinish(); });
+
+    // Fallback: never wait more than 8s
     const fallback = setTimeout(() => {
-      videoReady = true;
-      windowReady = true;
+      windowReady = true; videoReady = true; sectionsReady = true;
       tryFinish();
-    }, 6000);
+    }, 8000);
 
     tryFinish();
 
@@ -246,7 +252,7 @@ function App() {
         <h1 className="name-title reveal reveal-scale">
           ADRIAN<br />TRIF
         </h1>
-        <div className="location-label reveal reveal-fade-up" style={{transitionDelay:'0.4s'}}>
+        <div className="location-label reveal" style={{transitionDelay:'0.4s'}}>
           <p>Alba Iulia, Alba, RO</p>
           <p>///BACKEND DEVELOPER <span style={{ color: 'gray' }}>+ FREELANCER</span></p>
         </div>

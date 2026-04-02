@@ -51,7 +51,6 @@ export default function StudiesSection() {
     /Android|iPhone|iPad|iPod/i.test(navigator.userAgent);
 
   useEffect(() => {
-    if (isMobile) return;
     const ctx = gsap.context(() => {
 
       // Title split — "STU" from left, "DIES" from right
@@ -77,19 +76,21 @@ export default function StudiesSection() {
         }
       );
 
-      // Vertical bar — scrub grows as section scrolls into view
-      gsap.fromTo('.studies-vbar',
-        { scaleY: 0, transformOrigin: 'top center' },
-        {
-          scaleY: 1, ease: 'none',
-          scrollTrigger: {
-            trigger: '.studies-timeline',
-            start: 'top 65%',
-            end:   'bottom 55%',
-            scrub: 1,
-          },
-        }
-      );
+      // Vertical bar — scrub grows as section scrolls into view (desktop only)
+      if (!isMobile) {
+        gsap.fromTo('.studies-vbar',
+          { scaleY: 0, transformOrigin: 'top center' },
+          {
+            scaleY: 1, ease: 'none',
+            scrollTrigger: {
+              trigger: '.studies-timeline',
+              start: 'top 65%',
+              end:   'bottom 55%',
+              scrub: 1,
+            },
+          }
+        );
+      }
 
       // Entry dots pop in
       document.querySelectorAll('.studies-entry-dot').forEach((dot) => {
