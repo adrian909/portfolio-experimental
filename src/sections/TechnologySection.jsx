@@ -66,7 +66,7 @@ export default function TechnologySection() {
         {
           opacity: 1, y: 0,
           stagger: 0.15, duration: 0.8, ease: 'power3.out',
-          scrollTrigger: { trigger: '.tech-rows', start: 'top 82%', toggleActions: 'play none none none' },
+          scrollTrigger: { trigger: sectionRef.current, start: 'top 75%', once: true },
         }
       );
 

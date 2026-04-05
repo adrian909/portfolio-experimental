@@ -30,8 +30,10 @@ function WordReveal({ lines, className = '', baseDelay = 0 }) {
   );
 }
 
-// ─── Floating background particles ───────────────────────────────────────────
-const PARTICLES = Array.from({ length: 32 }, (_, i) => ({
+// ─── Floating background particles (desktop only, 16 max) ────────────────────
+const isMobileDevice = window.matchMedia('(max-width: 768px)').matches ||
+  /Android|iPhone|iPad|iPod/i.test(navigator.userAgent);
+const PARTICLES = isMobileDevice ? [] : Array.from({ length: 16 }, (_, i) => ({
   id: i,
   x:  Math.random() * 100,
   y:  Math.random() * 100,

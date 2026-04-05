@@ -227,7 +227,7 @@ function App() {
       <div className="menu">
         <p className={`top-left-label${headerDark ? ' header-light' : ''}${!headerVisible ? ' header-hidden' : ''}`}>
           <span style={{ color: 'gray' }}>RO LOCAL/</span>
-          <b>{date.toLocaleTimeString()}</b>
+          <b>{date.toLocaleTimeString('ro-RO', { hour: '2-digit', minute: '2-digit', second: '2-digit' })}</b>
         </p>
       </div>
 
@@ -322,7 +322,7 @@ function App() {
         <div className="cin-footer-inner">
           <span className="cin-footer-copy">© {date.getFullYear()} — ADRIAN TRIF</span>
           <span className="cin-footer-loc">ALBA IULIA, ROMANIA</span>
-          <span className="cin-footer-stack">BUILT WITH REACT + GSAP + THREE.JS</span>
+          <span className="cin-footer-stack">BUILT WITH REACT + GSAP + FRAMER</span>
         </div>
       </footer>
 

@@ -6,7 +6,12 @@
       "Bash(node -e \":*)",
       "Bash(npm run:*)",
       "Bash(pkill -f \"vite --port 5174\")",
-      "WebFetch(domain:trifadrian.ro)"
+      "WebFetch(domain:trifadrian.ro)",
+      "Bash(grep \"gsap\\\\|GSAP\" /d/portfolio-experimental/src/sections/*.jsx)",
+      "Bash(grep -n \"will-change\\\\|ticker\\\\|gsap.ticker\" /d/portfolio-experimental/src/sections/*.jsx /d/portfolio-experimental/src/components/*.jsx)",
+      "Bash(wc -l /d/portfolio-experimental/src/sections/*.jsx)",
+      "Bash(grep -n \"unused\\\\|TODO\\\\|FIXME\\\\|console\\\\.\" /d/portfolio-experimental/src/sections/*.jsx /d/portfolio-experimental/src/App.jsx /d/portfolio-experimental/src/components/*.jsx)",
+      "Bash(grep -i \"import.*from.*three\\\\|Canvas\\\\|useFrame\\\\|useLoader\" /d/portfolio-experimental/src/sections/*.jsx)"
     ]
   }
 }
